@@ -20,24 +20,26 @@ export default function AddTodo(props) {
         description: description,
         timestamp: new Date().toLocaleString()
       }
-      let todos = localStorage.getItem('todos');
+      let todos = localStorage.getItem('react-todos-app');
       let todosObj = [];
       if (todos == null) {
         todosObj.push(formData);
-        localStorage.setItem("todos", JSON.stringify(todosObj));
+        localStorage.setItem("react-todos-app", JSON.stringify(todosObj));
         document.getElementById("title").value = "";
         document.getElementById("description").value = "";
         props.getTodos();
+        props.showAlert("Your todo has been added successfully!", "success");
       } else {
         todosObj = JSON.parse(todos);
         todosObj.push(formData);
-        localStorage.setItem("todos", JSON.stringify(todosObj));
+        localStorage.setItem("react-todos-app", JSON.stringify(todosObj));
         document.getElementById("title").value = "";
         document.getElementById("description").value = "";
         props.getTodos();
+        props.showAlert("Your todo has been added successfully!", "success");
       }
     }else{
-      alert("Please fill up your todo details!");
+      props.showAlert("Please fill up your todo details!", "error");
     }
   }
 

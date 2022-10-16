@@ -3,7 +3,7 @@ import React from 'react'
 export default function TodoItem(props) {
 
   const deleteTodo = (e) => {
-    let todos = localStorage.getItem('todos');
+    let todos = localStorage.getItem('react-todos-app');
     let todosObj = [];
     if (todos == null) {
       todosObj = [];
@@ -11,8 +11,9 @@ export default function TodoItem(props) {
       if (window.confirm("Are you sure, you want to delete this todo ?")){
         todosObj = JSON.parse(todos);
         todosObj.splice(e.target.id, 1);
-        localStorage.setItem("todos", JSON.stringify(todosObj));
+        localStorage.setItem("react-todos-app", JSON.stringify(todosObj));
         props.getTodos();
+        props.showAlert("Your todo has been deleted successfully!", "success");
       }
     }
   }
